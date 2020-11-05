@@ -16,8 +16,9 @@ class InvitesReport
 
     public function generate(): Worksheet
     {
+        $total = $this->invites->count();
         $sheet = new Worksheet();
-        $sheet->setCellValueByColumnAndRow(1, 1, 10);
+        $sheet->setCellValueByColumnAndRow(1, 1, $total);
 
         return $sheet;
     }
