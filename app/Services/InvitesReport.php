@@ -24,6 +24,16 @@ class InvitesReport
         $sheet->setCellValueByColumnAndRow(2, 1, $accepted);
         $sheet->setCellValueByColumnAndRow(3, 1, "{$acceptedPercentage}%");
 
+        $row = 2;
+        $this->invites->each(function ($invite) use (&$sheet, &$row) {
+            $sheet->setCellValueByColumnAndRow(1, $row, $invite['name']);
+            $sheet->setCellValueByColumnAndRow(2, $row, $invite['email']);
+            $sheet->setCellValueByColumnAndRow(3, $row, $invite['link']);
+            $sheet->setCellValueByColumnAndRow(4, $row, $invite['user_id']);
+            $sheet->setCellValueByColumnAndRow(5, $row, $invite['accepted']);
+            ++$row;
+        });
+
         return $sheet;
     }
 }
