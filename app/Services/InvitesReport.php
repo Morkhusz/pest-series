@@ -17,8 +17,10 @@ class InvitesReport
     public function generate(): Worksheet
     {
         $total = $this->invites->count();
+        $accepted = $this->invites->where('accepted', 1)->count();
         $sheet = new Worksheet();
         $sheet->setCellValueByColumnAndRow(1, 1, $total);
+        $sheet->setCellValueByColumnAndRow(2, 1, $accepted);
 
         return $sheet;
     }
