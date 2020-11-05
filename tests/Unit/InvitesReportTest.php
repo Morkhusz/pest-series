@@ -88,3 +88,9 @@ test('second column should display the number 3 as total accepted invites')
         ->getCellByColumnAndRow(2, 1)
         ->getValue())
     ->toBe(3);
+
+test('third column should display the string 30% as total accepted invites percentage')
+    ->expect($inviteService->generate()
+        ->getCellByColumnAndRow(3, 1)
+        ->getValue())
+    ->toBe('30%');
