@@ -76,45 +76,39 @@ $invites->add([
 ]);
 
 $inviteService = new InvitesReport($invites);
+$worksheet = $inviteService->generate();
 
 test('first column should display the number 10 as total invites')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(1, 1)
+    ->expect($worksheet->getCellByColumnAndRow(1, 1)
         ->getValue())
     ->toBe(10);
 
 test('second column should display the number 3 as total accepted invites')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(2, 1)
+    ->expect($worksheet->getCellByColumnAndRow(2, 1)
         ->getValue())
     ->toBe(3);
 
 test('third column should display the string 30% as total accepted invites percentage')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(3, 1)
+    ->expect($worksheet->getCellByColumnAndRow(3, 1)
         ->getValue())
     ->toBe('30%');
 
 test('second line should be an accepted invite')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(5, 2)
+    ->expect($worksheet->getCellByColumnAndRow(5, 2)
         ->getValue())
     ->toBe(1);
 
 test('third line should be an accepted invite')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(5, 3)
+    ->expect($worksheet->getCellByColumnAndRow(5, 3)
         ->getValue())
     ->toBe(1);
 
 test('forth line should be an accepted invite')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(5, 4)
+    ->expect($worksheet->getCellByColumnAndRow(5, 4)
         ->getValue())
     ->toBe(1);
 
 test('fifth line should be a not accepted invite')
-    ->expect($inviteService->generate()
-        ->getCellByColumnAndRow(5, 5)
+    ->expect($worksheet->getCellByColumnAndRow(5, 5)
         ->getValue())
     ->toBe(0);
