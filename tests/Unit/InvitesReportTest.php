@@ -94,3 +94,27 @@ test('third column should display the string 30% as total accepted invites perce
         ->getCellByColumnAndRow(3, 1)
         ->getValue())
     ->toBe('30%');
+
+test('second line should be an accepted invite')
+    ->expect($inviteService->generate()
+        ->getCellByColumnAndRow(5, 2)
+        ->getValue())
+    ->toBe(1);
+
+test('third line should be an accepted invite')
+    ->expect($inviteService->generate()
+        ->getCellByColumnAndRow(5, 3)
+        ->getValue())
+    ->toBe(1);
+
+test('forth line should be an accepted invite')
+    ->expect($inviteService->generate()
+        ->getCellByColumnAndRow(5, 4)
+        ->getValue())
+    ->toBe(1);
+
+test('fifth line should be a not accepted invite')
+    ->expect($inviteService->generate()
+        ->getCellByColumnAndRow(5, 5)
+        ->getValue())
+    ->toBe(0);
