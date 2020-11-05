@@ -18,9 +18,11 @@ class InvitesReport
     {
         $total = $this->invites->count();
         $accepted = $this->invites->where('accepted', 1)->count();
+        $acceptedPercentage = ($accepted * 100) / $total;
         $sheet = new Worksheet();
         $sheet->setCellValueByColumnAndRow(1, 1, $total);
         $sheet->setCellValueByColumnAndRow(2, 1, $accepted);
+        $sheet->setCellValueByColumnAndRow(3, 1, "{$acceptedPercentage}%");
 
         return $sheet;
     }
