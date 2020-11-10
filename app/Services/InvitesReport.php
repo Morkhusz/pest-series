@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Invites;
 use Illuminate\Database\Eloquent\Collection;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
@@ -9,7 +10,7 @@ class InvitesReport
 {
     private $invites;
 
-    public function __construct(Collection $invites)
+    public function __construct($invites)
     {
         $this->invites = $invites;
     }
@@ -27,7 +28,7 @@ class InvitesReport
         $row = 2;
         $this->invites
             ->sortByDesc('accepted')
-            ->each(function ($invite) use (&$sheet, &$row) {
+            ->each(function (Invites $invite) use (&$sheet, &$row) {
                 $sheet->setCellValueByColumnAndRow(1, $row, $invite['name']);
                 $sheet->setCellValueByColumnAndRow(2, $row, $invite['email']);
                 $sheet->setCellValueByColumnAndRow(3, $row, $invite['link']);
